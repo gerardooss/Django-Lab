@@ -1,10 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h5>Nama: </h5>
-<p>{{nama}}</p>
 
-<table>
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">{{nama}} -- PBP E</span>
+    <button><a href="{% url 'wishlist:logout' %}">Logout</a></button>
+</div>
+</nav>
+
+<p></p>
+
+<!-- <table>
     <tr>
     <th>Nama Barang</th>
     <th>Harga Barang</th>
@@ -15,12 +22,41 @@
     <tr>
         <th>{{barang.nama_barang}}</th>
         <th>{{barang.harga_barang}}</th>
-        <th>{{barang.deskripsi}}</th>
+        <th>{{barang.deskripsi}}</th>∟
     </tr>
-{% endfor %}
-</table>
+    {% endfor %}
+</table> -->
 
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-<button><a href="{% url 'wishlist:logout' %}">Logout</a></button>
+<div class="container text-center border border-primary" >
+    <div class="row" style="font-weight:bold">
+        <div class="col">
+            Nama Barang
+        </div>
+        <div class="col">
+            Harga Barang
+        </div>
+        <div class="col">
+            Deskripsi
+        </div>
+    </div>
+
+  {% for barang in list_barang %}
+  <div class="row border border-info">
+    <div class="col">
+        {{barang.nama_barang}}
+    </div>
+    <div class="col">
+        {{barang.harga_barang}}
+    </div>
+    <div class="col">
+        {{barang.deskripsi}}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<h5></h5>
+<h5 style="font-family:Cambria   ;color:rgb(135, 135, 135); font-size:medium; 
+text-align: center;">Last login: {{ last_login }}</h5>
 
 {% endblock content %}

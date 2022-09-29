@@ -8,7 +8,13 @@
 
 <div class = "login">
     
-    <h1>Formulir Registrasi</h1>  
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">Register Your Account!</span>
+    </div>
+    </nav>
+
+    <p></p>
 
         <form method="POST" >  
             {% csrf_token %}  
@@ -16,7 +22,7 @@
                 {{ form.as_table }}  
                 <tr>  
                     <td></td>
-                    <td><input type="submit" name="submit" value="Daftar"/></td>  
+                    <td><input style="background-color:darkolivegreen; color:white" type="submit" name="submit" value="Register"/></td>  
                 </tr>  
             </table>  
         </form>
