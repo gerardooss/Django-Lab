@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">{{nama}} -- PBP E</span>
+    <button><a href="{% url 'wishlist:logout' %}">Logout</a></button>
+</div>
+</nav>
+
+<p></p>
+
+<script>
+    var caseid = <cfoutput>'#URL.ID#'</cfoutput>
+
+    $.ajax({
+          type:'GET',
+          url:'Asset.cfc?method=Asset&returnformat=json',
+          dataType: "json",
+          data: {
+              asset_id:     caseid,
+            },
+          success:function(data) {
+            if(data) {   // DO SOMETHING     
+                $('#picoutput').html(data);
+            } else { // DO SOMETHING }
+          }
+        }
+       });
+    </script>
+
+<div id="picoutput"></div>
+
+<div class="container text-center border border-primary" >
+    <div class="row" style="font-weight:bold">
+        <div class="col">
+            Nama Barang
+        </div>
+        <div class="col">
+            Harga Barang
+        </div>
+        <div class="col">
+            Deskripsi
+        </div>
+    </div>
+
+  {% for barang in list_barang %}
+  <div class="row border border-info">
+    <div class="col">
+        {{barang.nama_barang}}
+    </div>
+    <div class="col">
+        {{barang.harga_barang}}
+    </div>
+    <div class="col">
+        {{barang.deskripsi}}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<h5></h5>
+<h5 style="font-family:Cambria   ;color:rgb(135, 135, 135); font-size:medium; 
+text-align: center;">Last login: {{ last_login }}</h5>
+
+{% endblock content %}
